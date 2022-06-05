@@ -9,4 +9,6 @@ The system exposed the following endpoints to fulfill the use case requirements.
 | Admin: add new car                     | POST   /api/car                                      |
 | Admin: remove car                      | DELETE /api/car{id}                                  |
 
-
+### Local Development
+- Install Java JDK 1.8 or above
+- Run the command under the project root folder `mvn spring-boot run`
