@@ -1,6 +1,7 @@
 package com.best.carsalesapi.entity;
 
 import com.best.carsalesapi.entity.model.CarAvailabilityStatus;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "car")
@@ -22,10 +26,13 @@ public class Car {
     @GeneratedValue
     private Long id;
 
+    @NotNull
     private String brandName;
     
+    @NotNull
     private Double price;
     
+    @NotNull
     @Builder.Default
     private CarAvailabilityStatus carAvailabilityStatus = CarAvailabilityStatus.OPEN;
 
