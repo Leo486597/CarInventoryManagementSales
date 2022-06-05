@@ -109,7 +109,7 @@ class CarControllerIntegrationTest {
 
     @Test
     void deleteCar() throws Exception{
-        String uri = "/api/car/1";
+        String uri = "/api/car/4";
         mockMvc.perform(MockMvcRequestBuilders.delete(uri))
                 .andExpect(status().isOk());
     }

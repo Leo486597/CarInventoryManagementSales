@@ -30,9 +30,14 @@ public class MockDataGeneratorService {
                 .price(20.0)
                 .carAvailabilityStatus(CarAvailabilityStatus.SOLD)
                 .build();
+        Car car4 = Car.builder()
+                .brandName("z")
+                .price(27.0)
+                .build();
         cars.add(car1);
         cars.add(car2);
         cars.add(car3);
+        cars.add(car4);
         carRepository.saveAll(cars);
     }
 
