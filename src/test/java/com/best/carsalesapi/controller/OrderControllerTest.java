@@ -27,7 +27,7 @@ class OrderControllerIntegrationTest {
 
     @Test
     void createNewOrder() throws Exception {
-        String uri = "/api/order/create";
+        String uri = "/api/order";
         String json = "{\"buyerId\": 1, \"sellerId\": 3, \"carsId\": [1], \"hammerPrice\": 10.0}";
         mockMvc.perform(MockMvcRequestBuilders
                         .post(uri)
@@ -38,7 +38,7 @@ class OrderControllerIntegrationTest {
 
     @Test
     void createNewOrder_whenCarIsAlreadySold_shouldThrowApiHandledException() throws Exception {
-        String uri = "/api/order/create";
+        String uri = "/api/order";
         String json = "{\"buyerId\": 1, \"sellerId\": 3, \"carsId\": [1, 2, 3], \"hammerPrice\": 10.0}";
         mockMvc.perform(MockMvcRequestBuilders
                         .post(uri)

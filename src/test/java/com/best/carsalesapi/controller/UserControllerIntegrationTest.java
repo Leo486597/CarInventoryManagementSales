@@ -22,7 +22,7 @@ class UserControllerIntegrationTest {
 
     @Test
     void createNewUser() throws Exception {
-        String uri = "/api/user/create";
+        String uri = "/api/user";
         String json = "{\"name\": \"leo\", \"role\": \"USER\"}";
         mockMvc.perform(MockMvcRequestBuilders
                         .post(uri)
@@ -33,7 +33,7 @@ class UserControllerIntegrationTest {
 
     @Test
     void createNewUser_whenRoleViolateConstrain_shouldThrowConstrainViolateException() throws Exception {
-        String uri = "/api/order/create";
+        String uri = "/api/user";
         String json = "{\"name\": \"leo\", \"role\": \"USERx\"}";
         mockMvc.perform(MockMvcRequestBuilders
                         .post(uri)

@@ -22,7 +22,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     public UserEntity createNewUser(@RequestBody @Valid CreateUserRequestModel input) {
         return userService.createNewUser(input);
     }

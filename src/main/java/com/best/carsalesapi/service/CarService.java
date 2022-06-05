@@ -40,4 +40,12 @@ public class CarService {
 
         return carRepository.save(car);
     }
+
+    public Car deleteCar(Long id) {
+        Car car = carRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Resource Not Found"));
+
+        carRepository.delete(car);
+        return car;
+    }
 }

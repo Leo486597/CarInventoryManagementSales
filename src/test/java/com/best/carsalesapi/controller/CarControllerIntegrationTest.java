@@ -106,4 +106,11 @@ class CarControllerIntegrationTest {
                         assertTrue(result.getResolvedException() instanceof ConstraintViolationException)
                 );
     }
+
+    @Test
+    void deleteCar() throws Exception{
+        String uri = "/api/car/1";
+        mockMvc.perform(MockMvcRequestBuilders.delete(uri))
+                .andExpect(status().isOk());
+    }
 }
