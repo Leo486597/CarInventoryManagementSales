@@ -12,6 +12,7 @@ public class LoadDatabase {
     CommandLineRunner initDatabase(MockDataGeneratorService service) {
         return args -> {
             service.generateCars();
+            service.generateUsers();
         };
     }
 }

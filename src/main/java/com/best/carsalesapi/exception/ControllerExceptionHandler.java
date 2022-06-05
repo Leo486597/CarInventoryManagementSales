@@ -15,9 +15,7 @@ import java.util.Date;
 
 @RestControllerAdvice
 public class ControllerExceptionHandler {
-    @ExceptionHandler({MethodArgumentNotValidException.class,
-            ConstraintViolationException.class,
-            ApiHandledException.class})
+    @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ErrorResponse> constrainViolateExceptionHandler(ConstraintViolationException exception, WebRequest request) {
         StringBuilder error = new StringBuilder();
 
@@ -28,6 +26,17 @@ public class ControllerExceptionHandler {
         ErrorResponse response = ErrorResponse.builder()
                 .timestamp(new Date())
                 .message(error.toString())
+                .description(request.getDescription(false))
+                .build();
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({MethodArgumentNotValidException.class, ApiHandledException.class})
+    public ResponseEntity<ErrorResponse> apiHandledException(ApiHandledException exception, WebRequest request) {
+        ErrorResponse response = ErrorResponse.builder()
+                .timestamp(new Date())
+                .message(exception.getMessage())
                 .description(request.getDescription(false))
                 .build();
 

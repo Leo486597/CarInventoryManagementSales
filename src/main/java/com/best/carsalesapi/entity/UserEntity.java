@@ -1,36 +1,28 @@
 package com.best.carsalesapi.entity;
 
-import com.best.carsalesapi.entity.model.CarAvailabilityStatus;
-import com.sun.istack.NotNull;
+import com.best.carsalesapi.entity.model.UserRoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "car")
+@Table(name = "person")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-public class Car {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    private String brandName;
-
-    @NotNull
-    private Double price;
-
-    @NotNull
     @Builder.Default
-    private CarAvailabilityStatus carAvailabilityStatus = CarAvailabilityStatus.OPEN;
+    private UserRoleEnum role = UserRoleEnum.USER;
 
-    // constrains
+    @NotNull
+    private String name;
 }
-
-

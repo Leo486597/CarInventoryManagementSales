@@ -3,8 +3,9 @@ package com.best.carsalesapi.service;
 import com.best.carsalesapi.controller.model.CreateOrderRequestModel;
 import com.best.carsalesapi.entity.Car;
 import com.best.carsalesapi.entity.Order;
-import com.best.carsalesapi.entity.Person;
+import com.best.carsalesapi.entity.UserEntity;
 import com.best.carsalesapi.entity.model.CarAvailabilityStatus;
+import com.best.carsalesapi.entity.model.CarOrderStatus;
 import com.best.carsalesapi.exception.ApiHandledException;
 import com.best.carsalesapi.exception.NotFoundException;
 import com.best.carsalesapi.repository.CarRepository;
@@ -37,16 +38,16 @@ public class OrderService {
 
     @Transactional
     public Order createNewOrder(CreateOrderRequestModel model) {
-        Optional<Person> buyer = userRepository.findById(model.getBuyerId());
-        Optional<Person> seller = userRepository.findById(model.getSellerId());
+        Optional<UserEntity> buyer = userRepository.findById(model.getBuyerId());
+        Optional<UserEntity> seller = userRepository.findById(model.getSellerId());
 
         if (!buyer.isPresent() || !seller.isPresent())
             throw new NotFoundException("Buyer or seller is Not found");
 
-        Person validBuyer = buyer.get();
-        Person validSeller = seller.get();
+        UserEntity validBuyer = buyer.get();
+        UserEntity validSeller = seller.get();
         Collection<Car> cars = new ArrayList<>();
-        
+
         // validate car's availability
         model.getCarsId().forEach(carId -> {
             Car car = carRepository
@@ -65,6 +66,7 @@ public class OrderService {
                 .buyer(validBuyer)
                 .seller(validSeller)
                 .orderedItems(cars)
+                .orderStatus(CarOrderStatus.RESOLVED)
                 .build();
         return orderRepository.save(order);
     }

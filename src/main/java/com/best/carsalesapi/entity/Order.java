@@ -22,17 +22,18 @@ public class Order {
     private Long id;
 
     @OneToOne
-    private Person buyer;
+    private UserEntity buyer;
 
     @OneToOne
-    private Person seller;
+    private UserEntity seller;
 
     @OneToMany
     private Collection<Car> orderedItems;
 
-    private CarOrderStatus orderStatus;
+    @Builder.Default
+    private CarOrderStatus orderStatus = CarOrderStatus.PENDING;
 
     private Date orderDate;
 
-    private Double paymentAmount;
+    private Double hammerPrice;
 }
