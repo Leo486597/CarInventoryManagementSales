@@ -24,8 +24,8 @@ public class Person {
     private Enum Role;
 
     private String name;
-    
+
     private String gender;
-    
+
     private int age;
 }

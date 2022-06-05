@@ -32,14 +32,9 @@ public class CarController {
     // todo, role control
     // todo, api documentation 
     // todo, logging
-
-    // todo, automation test / flow integration test
-    
-    // todo, unit test
-
     @GetMapping("/listCarsByCarAvailabilityStatus/{status}")
     public ResponseEntity<Collection<Car>> listCarsByCarAvailabilityStatus(
-            @PathVariable("status") 
+            @PathVariable("status")
             @Valid @ValueOfEnum(enumClass = CarAvailabilityStatus.class) String status) {
         return new ResponseEntity<>(
                 carService.listCarsByCarAvailabilityStatus(status), HttpStatus.OK
@@ -57,8 +52,9 @@ public class CarController {
 
     /**
      * Update entire car information
-     * @param input {@link UpdateCarRequestModel} 
-     * @return 
+     *
+     * @param input {@link UpdateCarRequestModel}
+     * @return
      */
     @PutMapping("")
     public ResponseEntity<Car> updateCar(@RequestBody @Valid UpdateCarRequestModel input) {

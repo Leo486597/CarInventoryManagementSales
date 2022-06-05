@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class LoadDatabase {
-    
+
     @Bean
-    CommandLineRunner initDatabase(MockDataGeneratorService service){
+    CommandLineRunner initDatabase(MockDataGeneratorService service) {
         return args -> {
             service.generateCars();
         };

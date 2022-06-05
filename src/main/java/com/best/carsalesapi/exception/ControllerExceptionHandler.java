@@ -15,8 +15,10 @@ import java.util.Date;
 
 @RestControllerAdvice
 public class ControllerExceptionHandler {
-    @ExceptionHandler({MethodArgumentNotValidException.class, ConstraintViolationException.class})
-    public ResponseEntity<ErrorResponse> constrainViolateExceptionHandler(ConstraintViolationException exception, WebRequest request){
+    @ExceptionHandler({MethodArgumentNotValidException.class,
+            ConstraintViolationException.class,
+            ApiHandledException.class})
+    public ResponseEntity<ErrorResponse> constrainViolateExceptionHandler(ConstraintViolationException exception, WebRequest request) {
         StringBuilder error = new StringBuilder();
 
         for (ConstraintViolation violation : exception.getConstraintViolations()) {
@@ -28,13 +30,13 @@ public class ControllerExceptionHandler {
                 .message(error.toString())
                 .description(request.getDescription(false))
                 .build();
-        
+
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(InvalidArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<ErrorResponse> invalidArgumentExceptionHandler(Exception exception, WebRequest request){
+    public ResponseEntity<ErrorResponse> invalidArgumentExceptionHandler(Exception exception, WebRequest request) {
         ErrorResponse response = ErrorResponse.builder()
                 .timestamp(new Date())
                 .message(exception.getMessage())
@@ -45,7 +47,7 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> globalExceptionHandler(Exception exception, WebRequest request){
+    public ResponseEntity<ErrorResponse> globalExceptionHandler(Exception exception, WebRequest request) {
         ErrorResponse response = ErrorResponse.builder()
                 .timestamp(new Date())
                 .message(exception.getMessage())
@@ -56,7 +58,7 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<ErrorResponse> notFoundExceptionHandler(Exception exception, WebRequest request){
+    public ResponseEntity<ErrorResponse> notFoundExceptionHandler(Exception exception, WebRequest request) {
         ErrorResponse response = ErrorResponse.builder()
                 .timestamp(new Date())
                 .message(exception.getMessage())
@@ -67,7 +69,7 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(UnauthorizedException.class)
-    public ResponseEntity<ErrorResponse> unauthorizedExceptionHandler(Exception exception, WebRequest request){
+    public ResponseEntity<ErrorResponse> unauthorizedExceptionHandler(Exception exception, WebRequest request) {
         ErrorResponse response = ErrorResponse.builder()
                 .timestamp(new Date())
                 .message(exception.getMessage())

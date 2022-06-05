@@ -15,7 +15,7 @@ class ValueOfEnumValidatorTest {
     Validator validator;
 
     @BeforeEach
-    void beforeEach(){
+    void beforeEach() {
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
@@ -40,7 +40,7 @@ class ValueOfEnumValidatorTest {
                 .carAvailabilityStatus("OPENs")
                 .brandName("TEST")
                 .build();
-        
+
         Set<ConstraintViolation<UpdateCarRequestModel>> violations = validator.validate(model);
         Assertions.assertEquals(violations.size(), 1);
     }

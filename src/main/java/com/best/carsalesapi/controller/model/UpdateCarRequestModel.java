@@ -6,7 +6,6 @@ import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.Positive;
 
 
@@ -18,10 +17,10 @@ public class UpdateCarRequestModel {
 
     @NotNull
     private String brandName;
-    
+
     @Positive
     private Double price;
-    
+
     @ValueOfEnum(enumClass = CarAvailabilityStatus.class)
     private String carAvailabilityStatus;
 }

@@ -23,16 +23,16 @@ public class Order {
 
     @OneToOne
     private Person buyer;
-    
+
     @OneToOne
     private Person seller;
-    
+
     @OneToMany
     private Collection<Car> orderedItems;
-    
+
     private CarOrderStatus orderStatus;
-    
+
     private Date orderDate;
-    
+
     private Double paymentAmount;
 }

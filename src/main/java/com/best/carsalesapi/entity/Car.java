@@ -11,9 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "car")
@@ -28,10 +25,10 @@ public class Car {
 
     @NotNull
     private String brandName;
-    
+
     @NotNull
     private Double price;
-    
+
     @NotNull
     @Builder.Default
     private CarAvailabilityStatus carAvailabilityStatus = CarAvailabilityStatus.OPEN;
